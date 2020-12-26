@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/swaggest/swgui/v3"
@@ -28,5 +29,8 @@ func main() {
 
 	http.Handle("/", h)
 	fmt.Printf("Listening at %s:%d\n", host, port)
-	http.ListenAndServe(fmt.Sprintf("%s:%d", host, port), nil)
+	err := http.ListenAndServe(fmt.Sprintf("%s:%d", host, port), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
