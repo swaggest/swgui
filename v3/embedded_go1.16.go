@@ -136,8 +136,6 @@ func (cs *compressedServer) serve(rw http.ResponseWriter, req *http.Request, fn,
 }
 
 func (cs *compressedServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-	println(req.URL.Path, req.RequestURI)
-
 	if req.Method != http.MethodGet {
 		rw.Header().Set("Allow", http.MethodGet)
 		http.Error(rw, "Method Not Allowed\n\nmethod should be GET", http.StatusMethodNotAllowed)
@@ -163,7 +161,7 @@ func (cs *compressedServer) ServeHTTP(rw http.ResponseWriter, req *http.Request)
 		}
 	}
 
-	fn := req.URL.Path
+	fn := strings.TrimPrefix(req.URL.Path, "/")
 
 	// Copy brotli compressed data into response.
 	brotliInfo, brotliFound := cs.info[fn+".br"]
