@@ -15,8 +15,8 @@ github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd/go.mod h1:TrYk7fJV
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/vearutop/statigz v0.0.0-20201227154402-d9cae745ca6d h1:u7Eb3fVMdgZ0rvn10fDASHWECsE0Utk6pVIwSm6YvJQ=
-github.com/vearutop/statigz v0.0.0-20201227154402-d9cae745ca6d/go.mod h1:A6aweyvs+WWmDz2WNRxT5wcpNKtKXk6QBDAAPMxIk0o=
+github.com/vearutop/statigz v1.0.0 h1:x6AjXC2837Tdl8/69Kwro1UftpDmIKciIqSKuIvV6Gk=
+github.com/vearutop/statigz v1.0.0/go.mod h1:A6aweyvs+WWmDz2WNRxT5wcpNKtKXk6QBDAAPMxIk0o=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190620200207-3b0461eec859/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=
 golang.org/x/net v0.0.0-20200520182314-0ba52f642ac2 h1:eDrdRpKgkcCqKZQwyZRyeFZgfqt37SL7Kv3tok06cKE=
