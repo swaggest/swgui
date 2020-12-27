@@ -3,13 +3,11 @@
 package v3
 
 import (
-	"github.com/swaggest/swgui/statigz"
-	"github.com/swaggest/swgui/statigz/brotli"
 	"github.com/swaggest/swgui/v3/static"
+	"github.com/vearutop/statigz"
 )
 
-//var staticServer = gzipped.FileServer(http.FS(static.FS))
-var staticServer = statigz.FileServer(static.FS, brotli.AddEncoding())
+var staticServer = statigz.FileServer(static.FS)
 
 const (
 	assetsBase  = "{{ .BasePath }}"
