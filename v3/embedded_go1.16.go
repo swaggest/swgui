@@ -90,13 +90,16 @@ func (cs *compressedServer) serve(rw http.ResponseWriter, req *http.Request, fn,
 	decompress func(r io.Reader) (io.Reader, error)) {
 	if m := req.Header.Get("If-None-Match"); m == hash {
 		rw.WriteHeader(http.StatusNotModified)
+
 		return
 	}
 
-	if ctype := mime.TypeByExtension(filepath.Ext(fn)); ctype != "" {
-		rw.Header().Set("Content-Type", ctype)
+	ctype := mime.TypeByExtension(filepath.Ext(fn))
+	if ctype == "" {
+		ctype = "application/octet-stream" // Prevent unreliable Content-Type detection on compressed data.
 	}
 
+	rw.Header().Set("Content-Type", ctype)
 	rw.Header().Set("Etag", hash)
 
 	if enc != "" {
