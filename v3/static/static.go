@@ -3,9 +3,11 @@
 // Package static contains files to embed.
 package static
 
-import (
-	"embed"
-)
+// Disabled until https://github.com/golang/go/issues/43400 is resolved.
 
-//go:embed *.png *.gz
-var FS embed.FS
+//import (
+//	"embed"
+//)
+//
+////go:embed *.png *.gz
+//var FS embed.FS

@@ -11,7 +11,7 @@ func main() {
 	var fs http.FileSystem = http.Dir("./v3/static")
 
 	err := vfsgen.Generate(fs, vfsgen.Options{
-		BuildTags:   "!swguicdn,!go1.16",
+		BuildTags:   "!swguicdn",
 		PackageName: "v3",
 		Filename:    "v3/static.go",
 	})

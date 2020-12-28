@@ -2,14 +2,16 @@
 
 package v3
 
-import (
-	"github.com/swaggest/swgui/v3/static"
-	"github.com/vearutop/statigz"
-)
+// Disabled until https://github.com/golang/go/issues/43400 is resolved.
 
-var staticServer = statigz.FileServer(static.FS)
-
-const (
-	assetsBase  = "{{ .BasePath }}"
-	faviconBase = "{{ .BasePath }}"
-)
+//import (
+//	"github.com/swaggest/swgui/v3/static"
+//	"github.com/vearutop/statigz"
+//)
+//
+//var staticServer = statigz.FileServer(static.FS)
+//
+//const (
+//	assetsBase  = "{{ .BasePath }}"
+//	faviconBase = "{{ .BasePath }}"
+//)
