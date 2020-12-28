@@ -1,4 +1,4 @@
-// +build !swguicdn,!go1.16
+// +build !swguicdn
 
 package v3
 
