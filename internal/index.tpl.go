@@ -1,6 +1,7 @@
-package v3
+package internal
 
-var indexTpl = `
+func IndexTpl(assetsBase, faviconBase string) string {
+	return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,3 +104,4 @@ var indexTpl = `
 </body>
 </html>
 `
+}

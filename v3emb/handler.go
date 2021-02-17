@@ -1,4 +1,4 @@
-package v3
+package v3emb
 
 import (
 	"github.com/swaggest/swgui"

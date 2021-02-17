@@ -2,12 +2,14 @@
 
 [![GoDevDoc](https://img.shields.io/badge/dev-doc-00ADD8?logo=go)](https://pkg.go.dev/github.com/swaggest/swgui)
 
-Package `swgui` (Swagger UI) provides HTTP handler to serve Swagger UI.
-All assets are embedded in Go source code, so just build and run.
+Package `swgui` (Swagger UI) provides HTTP handler to serve Swagger UI. All assets are embedded in Go source code, so
+just build and run.
 
-Static assets for `v3` are built from Swagger UI [v3.38.0](https://github.com/swagger-api/swagger-ui/releases/tag/v3.38.0).
+Static assets for `v3` are built from Swagger
+UI [v3.43.0](https://github.com/swagger-api/swagger-ui/releases/tag/v3.43.0).
 
-[CDN-based](https://cdnjs.com/libraries/swagger-ui) `v3cdn` uses Swagger UI [v3.38.0](https://github.com/swagger-api/swagger-ui/releases/tag/v3.38.0).
+[CDN-based](https://cdnjs.com/libraries/swagger-ui) `v3cdn` uses Swagger
+UI [v3.43.0](https://github.com/swagger-api/swagger-ui/releases/tag/v3.43.0).
 
 ## How to use
 
@@ -15,16 +17,20 @@ Static assets for `v3` are built from Swagger UI [v3.38.0](https://github.com/sw
 package main
 
 import (
-    "net/http"
+	"net/http"
 
-    "github.com/swaggest/swgui/v3"
+	"github.com/swaggest/swgui/v3emb" // For go1.16 or later.
+	// "github.com/swaggest/swgui/v3" // For go1.15 and below.
 )
 
 func main() {
-    http.Handle("/", v3.NewHandler("My API", "/swagger.json", "/"))
-    http.ListenAndServe(":8080", nil)
+	http.Handle("/", v3.NewHandler("My API", "/swagger.json", "/"))
+	http.ListenAndServe(":8080", nil)
 }
 ```
+
+If you use `go1.16` or later, you can import natively embedded assets with `"github.com/swaggest/swgui/v3emb"`, it may
+help to lower application memory usage.
 
 ## Use CDN for assets
 
