@@ -9,4 +9,9 @@ type Config struct {
 	ShowTopBar         bool              `json:"showTopBar"`         // Show navigation top bar, hidden by default
 	JsonEditor         bool              `json:"jsonEditor"`         // Enable visual json editor support (experimental, can fail with complex schemas)
 	PreAuthorizeApiKey map[string]string `json:"preAuthorizeApiKey"` // Map of security name to key value
+
+	// SettingsUI contains keys and plain javascript values of SwaggerUIBundle configuration.
+	// Overrides default values.
+	// See https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/ for available options.
+	SettingsUI map[string]string `json:"-"`
 }

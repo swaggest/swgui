@@ -28,7 +28,7 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 	}
 	j, _ := json.Marshal(h.Config)
 	h.ConfigJson = template.JS(j)
-	h.tpl, _ = template.New("index").Parse(IndexTpl(assetsBase, faviconBase))
+	h.tpl, _ = template.New("index").Parse(IndexTpl(assetsBase, faviconBase, config))
 	if staticServer != nil {
 		h.staticServer = http.StripPrefix(h.BasePath, staticServer)
 	}
