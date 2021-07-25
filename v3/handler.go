@@ -1,3 +1,4 @@
+// Package v3 provides embedded Swagger UI v3 assets.
 package v3
 
 import (

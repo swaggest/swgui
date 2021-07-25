@@ -1,3 +1,4 @@
+// Package internal provides internal handler implementation.
 package internal
 
 import (
@@ -26,12 +27,23 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 	h := &Handler{
 		Config: config,
 	}
-	j, _ := json.Marshal(h.Config)
-	h.ConfigJson = template.JS(j)
-	h.tpl, _ = template.New("index").Parse(IndexTpl(assetsBase, faviconBase, config))
+
+	j, err := json.Marshal(h.Config)
+	if err != nil {
+		panic(err)
+	}
+
+	h.ConfigJson = template.JS(j) // nolint:gosec // Data is well formed.
+
+	h.tpl, err = template.New("index").Parse(IndexTpl(assetsBase, faviconBase, config))
+	if err != nil {
+		panic(err)
+	}
+
 	if staticServer != nil {
 		h.staticServer = http.StripPrefix(h.BasePath, staticServer)
 	}
+
 	return h
 }
 
@@ -39,10 +51,12 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if strings.TrimSuffix(r.URL.Path, "/") != strings.TrimSuffix(h.BasePath, "/") && h.staticServer != nil {
 		h.staticServer.ServeHTTP(w, r)
+
 		return
 	}
 
 	w.Header().Set("Content-Type", "text/html")
+
 	if err := h.tpl.Execute(w, h); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

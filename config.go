@@ -1,6 +1,6 @@
 package swgui
 
-// Config is used for Swagger UI handler configuration
+// Config is used for Swagger UI handler configuration.
 type Config struct {
 	Title       string `json:"title"`          // title of index file
 	SwaggerJSON string `json:"swaggerJsonUrl"` // url to swagger.json document specification

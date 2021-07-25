@@ -1,3 +1,4 @@
+// Package v4 provides Swagger UI v4 assets.
 package v4
 
 import (

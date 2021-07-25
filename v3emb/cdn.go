@@ -3,8 +3,9 @@
 package v3emb
 
 import (
-	"github.com/swaggest/swgui/v3cdn"
 	"net/http"
+
+	"github.com/swaggest/swgui/v3cdn"
 )
 
 var staticServer http.Handler

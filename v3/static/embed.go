@@ -7,5 +7,6 @@ import (
 	"embed"
 )
 
+// FS holds embedded assets.
 //go:embed *.png *.gz
 var FS embed.FS

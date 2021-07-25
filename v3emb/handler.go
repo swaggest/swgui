@@ -1,3 +1,4 @@
+// Package v3emb provides Swagger UI v3 with Go embed.
 package v3emb
 
 import (

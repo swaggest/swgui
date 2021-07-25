@@ -1,11 +1,14 @@
 package internal
 
 import (
-	"github.com/swaggest/swgui"
 	"sort"
 	"strings"
+
+	"github.com/swaggest/swgui"
 )
 
+// IndexTpl creates page template.
+// nolint:funlen // The template is long.
 func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
 	settings := map[string]string{
 		"url":         "url",
@@ -44,7 +47,7 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
 		settings[k] = v
 	}
 
-	var settingsStr []string
+	settingsStr := make([]string, 0, len(settings))
 	for k, v := range settings {
 		settingsStr = append(settingsStr, "\t\t\t"+k+": "+v)
 	}

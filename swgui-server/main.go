@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/swaggest/swgui/v3"
+	v3 "github.com/swaggest/swgui/v3"
 )
 
 var (
@@ -15,20 +15,18 @@ var (
 	title string
 )
 
-func init() {
+func main() {
 	flag.StringVar(&host, "host", "", "Host")
 	flag.UintVar(&port, "port", 8080, "Port")
 	flag.StringVar(&title, "title", "API Document", "Page title")
 
 	flag.Parse()
-}
 
-func main() {
-	var h http.Handler
-	h = v3.NewHandler(title, "/swagger.json", "/")
+	var h http.Handler = v3.NewHandler(title, "/swagger.json", "/")
 
 	http.Handle("/", h)
 	fmt.Printf("Listening at %s:%d\n", host, port)
+
 	err := http.ListenAndServe(fmt.Sprintf("%s:%d", host, port), nil)
 	if err != nil {
 		log.Fatal(err)
