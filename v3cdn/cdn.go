@@ -3,7 +3,7 @@ package v3cdn
 
 const (
 	// AssetsBase is a base URL for the assets.
-	AssetsBase = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.1/"
+	AssetsBase = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.2/"
 
 	// FaviconBase is a base URL for favicons.
 	FaviconBase = "https://petstore.swagger.io/"

@@ -33,8 +33,8 @@ endif
 
 # Add your custom targets here.
 
-SWAGGER_UI_VERSION_V3 := v3.51.1
-SWAGGER_UI_VERSION_V4 := v4.0.0-beta.1
+SWAGGER_UI_VERSION_V3 := v3.52.1
+SWAGGER_UI_VERSION_V4 := v4.0.0-rc.1
 
 ## Update assets for Swagger UI v3
 update-v3:

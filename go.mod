@@ -1,5 +1,7 @@
 module github.com/swaggest/swgui
 
+go 1.18
+
 require (
 	github.com/bool64/dev v0.1.37
 	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
@@ -9,3 +11,5 @@ require (
 	golang.org/x/net v0.0.0-20210716203947-853a461950ff // indirect
 	golang.org/x/tools v0.1.5 // indirect
 )
+
+require golang.org/x/text v0.3.6 // indirect

@@ -6,18 +6,18 @@ Package `swgui` (Swagger UI) provides HTTP handler to serve Swagger UI. All asse
 just build and run.
 
 Static assets for `v3` are built from Swagger
-UI [v3.51.1](https://github.com/swagger-api/swagger-ui/releases/tag/v3.51.1).
+UI [v3.52.2](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.2).
 
 [CDN-based](https://cdnjs.com/libraries/swagger-ui) `v3cdn` uses Swagger
-UI [v3.51.1](https://github.com/swagger-api/swagger-ui/releases/tag/v3.51.1).
+UI [v3.52.2](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.2).
 
 ### V4 Beta
 
 Static assets for `v4` are built from Swagger
-UI [v4.0.0-beta.1](https://github.com/swagger-api/swagger-ui/releases/tag/v4.0.0-beta.1).
+UI [v4.0.0-rc.1](https://github.com/swagger-api/swagger-ui/releases/tag/v4.0.0-rc.1).
 
 [CDN-based](https://cdnjs.com/libraries/swagger-ui) `v4cdn` uses Swagger
-UI [v4.0.0-beta.1](https://github.com/swagger-api/swagger-ui/releases/tag/v4.0.0-beta.1).
+UI [v4.0.0-rc.1](https://github.com/swagger-api/swagger-ui/releases/tag/v4.0.0-rc.1).
 
 
 ## How to use
