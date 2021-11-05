@@ -23,7 +23,7 @@ ifeq ($(DEVGO_PATH),)
 	DEVGO_PATH := $(shell GO111MODULE=on $(GO) list ${modVendor} -f '{{.Dir}}' -m github.com/bool64/dev)
 	ifeq ($(DEVGO_PATH),)
     	$(info Module github.com/bool64/dev not found, downloading.)
-    	DEVGO_PATH := $(shell export GO111MODULE=on && $(GO) mod tidy && $(GO) list -f '{{.Dir}}' -m github.com/bool64/dev)
+    	DEVGO_PATH := $(shell export GO111MODULE=on && $(GO) get github.com/bool64/dev && $(GO) list -f '{{.Dir}}' -m github.com/bool64/dev)
 	endif
 endif
 
@@ -33,8 +33,8 @@ endif
 
 # Add your custom targets here.
 
-SWAGGER_UI_VERSION_V3 := v3.52.1
-SWAGGER_UI_VERSION_V4 := v4.0.0-rc.1
+SWAGGER_UI_VERSION_V3 := v3.52.5
+SWAGGER_UI_VERSION_V4 := v4.0.1
 
 ## Update assets for Swagger UI v3
 update-v3:
