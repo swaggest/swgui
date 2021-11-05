@@ -9,7 +9,7 @@ Static assets for `v3` are built from Swagger
 UI [v3.52.5](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.5).
 
 [CDN-based](https://cdnjs.com/libraries/swagger-ui) `v3cdn` uses Swagger
-UI [v3.52.5](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.5).
+UI [v3.52.4](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.4).
 
 ### V4 Beta
 
