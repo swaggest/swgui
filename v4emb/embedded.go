@@ -1,3 +1,4 @@
+//go:build go1.16 && !swguicdn
 // +build go1.16,!swguicdn
 
 package v4emb

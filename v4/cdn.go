@@ -1,3 +1,4 @@
+//go:build swguicdn
 // +build swguicdn
 
 package v4
