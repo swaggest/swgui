@@ -42,12 +42,6 @@ issues:
   exclude-use-default: false
   exclude-rules:
     - linters:
-        - revive
-      text: var-naming
-    - linters:
-        - stylecheck
-      text: ST1003
-    - linters:
         - gomnd
         - goconst
         - goerr113

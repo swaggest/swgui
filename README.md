@@ -16,10 +16,10 @@ UI [v3.52.4](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.4).
 ### V4
 
 Static assets for `v4` are built from Swagger
-UI [v4.1.3](https://github.com/swagger-api/swagger-ui/releases/tag/v4.1.3).
+UI [v4.5.0](https://github.com/swagger-api/swagger-ui/releases/tag/v4.5.0).
 
 [CDN-based](https://cdnjs.com/libraries/swagger-ui) `v4cdn` uses Swagger
-UI [v4.1.3](https://github.com/swagger-api/swagger-ui/releases/tag/v4.1.3).
+UI [v4.5.0](https://github.com/swagger-api/swagger-ui/releases/tag/v4.5.0).
 
 
 ## How to use
