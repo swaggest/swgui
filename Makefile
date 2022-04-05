@@ -1,4 +1,4 @@
-#GOLANGCI_LINT_VERSION := "v1.43.0" # Optional configuration to pinpoint golangci-lint version.
+#GOLANGCI_LINT_VERSION := "v1.45.2" # Optional configuration to pinpoint golangci-lint version.
 
 # The head of Makefile determines location of dev-go to include standard targets.
 GO ?= go
@@ -34,7 +34,7 @@ endif
 # Add your custom targets here.
 
 SWAGGER_UI_VERSION_V3 := v3.52.5
-SWAGGER_UI_VERSION_V4 := v4.5.0
+SWAGGER_UI_VERSION_V4 := v4.10.3
 
 ## Update assets for Swagger UI v3
 update-v3:
