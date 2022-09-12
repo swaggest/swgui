@@ -4,11 +4,11 @@
 //
 // 1. Install tools:
 //
-//      go get -u github.com/shurcooL/vfsgen
+//	go get -u github.com/shurcooL/vfsgen
 //
 // 2. Generate file:
 //
 // At root folder, run command:
-//      go generate
 //
+//	go generate
 package swgui

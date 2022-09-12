@@ -16,6 +16,25 @@ func New(title, swaggerJSONPath string, basePath string) http.Handler {
 	return NewHandler(title, swaggerJSONPath, basePath)
 }
 
+// NewWithConfig creates configurable handler constructor.
+func NewWithConfig(config swgui.Config) func(title, swaggerJSONPath string, basePath string) http.Handler {
+	return func(title, swaggerJSONPath string, basePath string) http.Handler {
+		if config.Title == "" {
+			config.Title = title
+		}
+
+		if config.SwaggerJSON == "" {
+			config.SwaggerJSON = swaggerJSONPath
+		}
+
+		if config.BasePath == "" {
+			config.BasePath = basePath
+		}
+
+		return NewHandlerWithConfig(config)
+	}
+}
+
 // NewHandler creates HTTP handler for Swagger UI.
 func NewHandler(title, swaggerJSONPath string, basePath string) *Handler {
 	return NewHandlerWithConfig(swgui.Config{

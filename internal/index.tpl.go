@@ -8,7 +8,8 @@ import (
 )
 
 // IndexTpl creates page template.
-// nolint:funlen // The template is long.
+//
+//nolint:funlen // The template is long.
 func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
 	settings := map[string]string{
 		"url":         "url",
@@ -21,10 +22,11 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
 		"plugins": `[
 				SwaggerUIBundle.plugins.DownloadUrl
 			]`,
-		"layout":               `"StandaloneLayout"`,
-		"showExtensions":       "true",
-		"showCommonExtensions": "true",
-		"validatorUrl":         "null",
+		"layout":                   `"StandaloneLayout"`,
+		"showExtensions":           "true",
+		"showCommonExtensions":     "true",
+		"validatorUrl":             "null",
+		"defaultModelsExpandDepth": "-1", // Hides schemas, override with value "1" in Config.SettingsUI to show schemas.
 		`onComplete`: `function() {
                 if (cfg.preAuthorizeApiKey) {
                     for (var name in cfg.preAuthorizeApiKey) {

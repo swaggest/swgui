@@ -33,7 +33,7 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 		panic(err)
 	}
 
-	h.ConfigJson = template.JS(j) // nolint:gosec // Data is well formed.
+	h.ConfigJson = template.JS(j) //nolint:gosec // Data is well formed.
 
 	h.tpl, err = template.New("index").Parse(IndexTpl(assetsBase, faviconBase, config))
 	if err != nil {

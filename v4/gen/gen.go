@@ -1,3 +1,4 @@
+// Package main generates legacy static assets.
 package main
 
 import (
