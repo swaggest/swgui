@@ -112,9 +112,9 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
             });
         }
 
-		if (cfg.hideCurl) {
+        if (cfg.hideCurl) {
             settings.plugins.push(() => {return {wrapComponents: {curl: () => () => null}}});
-		}
+        }
 
         window.ui = SwaggerUIBundle(settings);
     }
