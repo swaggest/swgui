@@ -1,4 +1,4 @@
-#GOLANGCI_LINT_VERSION := "v1.50.1" # Optional configuration to pinpoint golangci-lint version.
+#GOLANGCI_LINT_VERSION := "v1.51.1" # Optional configuration to pinpoint golangci-lint version.
 
 # The head of Makefile determines location of dev-go to include standard targets.
 GO ?= go
@@ -34,7 +34,8 @@ endif
 # Add your custom targets here.
 
 SWAGGER_UI_VERSION_V3 := v3.52.5
-SWAGGER_UI_VERSION_V4 := v4.14.0
+SWAGGER_UI_VERSION_V4 := v4.18.1
+SWAGGER_UI_VERSION_V5 := v5.0.0-alpha.0
 
 ## Update assets for Swagger UI v3
 update-v3:
@@ -65,3 +66,18 @@ update-v4:
 	zopfli --i50 ./v4/static/*.js && rm -f ./v4/static/*.js
 	zopfli --i50 ./v4/static/*.css && rm -f ./v4/static/*.css
 	zopfli --i50 ./v4/static/*.html && rm -f ./v4/static/*.html
+
+## Update assets for Swagger UI v5
+update-v5:
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui-bundle.js -o ./v5/static/swagger-ui-bundle.js
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui-standalone-preset.js -o ./v5/static/swagger-ui-standalone-preset.js
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui.js -o ./v5/static/swagger-ui.js
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui.css -o ./v5/static/swagger-ui.css
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/oauth2-redirect.html -o ./v5/static/oauth2-redirect.html
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/favicon-32x32.png -o ./v5/static/favicon-32x32.png
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/favicon-16x16.png -o ./v5/static/favicon-16x16.png
+	rm -rf ./v5/static/*.gz
+	go run ./v5/gen/gen.go
+	zopfli --i50 ./v5/static/*.js && rm -f ./v5/static/*.js
+	zopfli --i50 ./v5/static/*.css && rm -f ./v5/static/*.css
+	zopfli --i50 ./v5/static/*.html && rm -f ./v5/static/*.html
