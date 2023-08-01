@@ -42,7 +42,7 @@ jobs:
           asset_name: linux_amd64.tar.gz
           asset_content_type: application/tar+gzip
       - name: Upload linux_amd64_dbg.tar.gz
-        if: hashFiles('linux_amd64.tar.gz') != ''
+        if: hashFiles('linux_amd64_dbg.tar.gz') != ''
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ github.event.release.upload_url }}
