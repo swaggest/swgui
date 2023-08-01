@@ -30,6 +30,7 @@ endif
 export CGO_ENABLED = 0
 BUILD_LDFLAGS=-s -w
 BUILD_PKG = ./cmd/swgui
+export RELEASE_TARGETS="darwin/amd64 darwin/arm64 linux/amd64 linux/arm64 windows/amd64"
 
 -include $(DEVGO_PATH)/makefiles/main.mk
 -include $(DEVGO_PATH)/makefiles/lint.mk

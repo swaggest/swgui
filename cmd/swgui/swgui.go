@@ -39,6 +39,8 @@ func main() {
 	hh := http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == urlToSchema {
 			http.ServeFile(rw, r, filePathToSchema)
+
+			return
 		}
 
 		swh.ServeHTTP(rw, r)
