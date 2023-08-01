@@ -1,0 +1,92 @@
+# This script is provided by github.com/bool64/dev.
+
+# This script uploads application binaries as GitHub release assets.
+name: release-assets
+on:
+  release:
+    types:
+      - created
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GO_VERSION: 1.20.x
+jobs:
+  build:
+    name: Upload Release Assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go stable
+        if: env.GO_VERSION != 'tip'
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: Install Go tip
+        if: env.GO_VERSION == 'tip'
+        run: |
+          curl -sL https://storage.googleapis.com/go-build-snap/go/linux-amd64/$(git ls-remote https://github.com/golang/go.git HEAD | awk '{print $1;}').tar.gz -o gotip.tar.gz
+          ls -lah gotip.tar.gz
+          mkdir -p ~/sdk/gotip
+          tar -C ~/sdk/gotip -xzf gotip.tar.gz
+          ~/sdk/gotip/bin/go version
+          echo "PATH=$HOME/go/bin:$HOME/sdk/gotip/bin/:$PATH" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build artifacts
+        run: |
+          make release-assets
+      - name: Upload linux_amd64.tar.gz
+        if: hashFiles('linux_amd64.tar.gz') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./linux_amd64.tar.gz
+          asset_name: linux_amd64.tar.gz
+          asset_content_type: application/tar+gzip
+      - name: Upload linux_amd64_dbg.tar.gz
+        if: hashFiles('linux_amd64.tar.gz') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./linux_amd64_dbg.tar.gz
+          asset_name: linux_amd64_dbg.tar.gz
+          asset_content_type: application/tar+gzip
+      - name: Upload linux_arm64.tar.gz
+        if: hashFiles('linux_arm64.tar.gz') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./linux_arm64.tar.gz
+          asset_name: linux_arm64.tar.gz
+          asset_content_type: application/tar+gzip
+      - name: Upload linux_arm.tar.gz
+        if: hashFiles('linux_arm.tar.gz') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./linux_arm.tar.gz
+          asset_name: linux_arm.tar.gz
+          asset_content_type: application/tar+gzip
+      - name: Upload darwin_amd64.tar.gz
+        if: hashFiles('darwin_amd64.tar.gz') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./darwin_amd64.tar.gz
+          asset_name: darwin_amd64.tar.gz
+          asset_content_type: application/tar+gzip
+      - name: Upload darwin_arm64.tar.gz
+        if: hashFiles('darwin_arm64.tar.gz') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./darwin_arm64.tar.gz
+          asset_name: darwin_arm64.tar.gz
+          asset_content_type: application/tar+gzip
+      - name: Upload windows_amd64.zip
+        if: hashFiles('windows_amd64.zip') != ''
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./windows_amd64.zip
+          asset_name: windows_amd64.zip
+          asset_content_type: application/zip
+

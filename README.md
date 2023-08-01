@@ -5,13 +5,13 @@
 Package `swgui` (Swagger UI) provides HTTP handler to serve Swagger UI. All assets are embedded in Go source code, so
 just build and run.
 
-### V3
+### V5
 
-Static assets for `v3` are built from Swagger
-UI [v3.52.5](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.5).
+Static assets for `v5` are built from Swagger
+UI [v5.1.3](https://github.com/swagger-api/swagger-ui/releases/tag/v5.1.3).
 
-[CDN-based](https://cdnjs.com/libraries/swagger-ui) `v3cdn` uses Swagger
-UI [v3.52.4](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.4).
+[CDN-based](https://cdnjs.com/libraries/swagger-ui) `v5cdn` uses Swagger
+UI [v5.1.3](https://github.com/swagger-api/swagger-ui/releases/tag/v5.1.3).
 
 ### V4
 
@@ -21,14 +21,13 @@ UI [v4.19.1](https://github.com/swagger-api/swagger-ui/releases/tag/v4.19.1).
 [CDN-based](https://cdnjs.com/libraries/swagger-ui) `v4cdn` uses Swagger
 UI [v4.19.1](https://github.com/swagger-api/swagger-ui/releases/tag/v4.19.1).
 
-### V5
+### V3
 
-Static assets for `v5` are built from Swagger
-UI [v5.1.3](https://github.com/swagger-api/swagger-ui/releases/tag/v5.1.3).
+Static assets for `v3` are built from Swagger
+UI [v3.52.5](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.5).
 
-[CDN-based](https://cdnjs.com/libraries/swagger-ui) `v5cdn` uses Swagger
-UI [v5.1.3](https://github.com/swagger-api/swagger-ui/releases/tag/v5.1.3).
-
+[CDN-based](https://cdnjs.com/libraries/swagger-ui) `v3cdn` uses Swagger
+UI [v3.52.4](https://github.com/swagger-api/swagger-ui/releases/tag/v3.52.4).
 
 ## How to use
 
@@ -38,17 +37,16 @@ package main
 import (
 	"net/http"
 
-	"github.com/swaggest/swgui/v3emb" // For go1.16 or later.
-	// "github.com/swaggest/swgui/v3" // For go1.15 and below.
+	"github.com/swaggest/swgui/v5emb"
 )
 
 func main() {
-	http.Handle("/", v3.NewHandler("My API", "/swagger.json", "/"))
-	http.ListenAndServe(":8080", nil)
+	http.Handle("/", v5emb.NewHandler("My API", "/swagger.json", "/"))
+	_ = http.ListenAndServe(":8080", nil)
 }
 ```
 
-If you use `go1.16` or later, you can import natively embedded assets with `"github.com/swaggest/swgui/v3emb"`, it may
+If you use `go1.16` or later, you can import natively embedded assets with `"github.com/swaggest/swgui/v5emb"`, it may
 help to lower application memory usage.
 
 ## Use CDN for assets
@@ -59,12 +57,41 @@ Also you can use `swguicdn` build tag to enable CDN mode for `github.com/swagges
 
 Be aware that CDN mode may be considered inappropriate for security or networking reasons.
 
-## Run as standalone server
+## Documentation viewer CLI tool
 
-Install `swgui-server`
+Install `swgui`.
 
-    go get github.com/swaggest/swgui/...
+```
+go install github.com/swaggest/swgui/cmd/swgui@latest
+```
 
-Start server
+Or download binary from [releases](https://github.com/swaggest/swgui/releases).
 
-    swgui-server -port 8080
+### Linux AMD64
+
+```
+wget https://github.com/swaggest/swgui/releases/latest/download/linux_amd64.tar.gz && tar xf linux_amd64.tar.gz && rm linux_amd64.tar.gz
+./swgui -version
+```
+
+### Macos Intel
+
+```
+wget https://github.com/swaggest/swgui/releases/latest/download/darwin_amd64.tar.gz && tar xf darwin_amd64.tar.gz && rm darwin_amd64.tar.gz
+codesign -s - ./swgui
+./swgui -version
+```
+
+### Macos Apple Silicon (M1, etc...)
+
+```
+wget https://github.com/swaggest/swgui/releases/latest/download/darwin_arm64.tar.gz && tar xf darwin_arm64.tar.gz && rm darwin_arm64.tar.gz
+codesign -s - ./swgui
+./swgui -version
+```
+
+Open spec file.
+
+```
+swgui my-openapi.yaml
+```
