@@ -3,7 +3,7 @@ module github.com/swaggest/swgui
 go 1.17
 
 require (
-	github.com/bool64/dev v0.2.29
+	github.com/bool64/dev v0.2.31
 	github.com/shurcooL/httpgzip v0.0.0-20190720172056-320755c1c1b0
 	github.com/shurcooL/vfsgen v0.0.0-20200824052919-0d455de96546
 	github.com/vearutop/statigz v1.4.0
