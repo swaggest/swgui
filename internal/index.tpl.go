@@ -93,7 +93,10 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
 <script>
     window.onload = function () {
         var cfg = {{ .ConfigJson }};
-        var url = window.location.protocol + "//" + window.location.host + cfg.swaggerJsonUrl;
+        var url = cfg.swaggerJsonUrl;
+        if (!url.startsWith("https://") && !url.startsWith("http://")) {
+           url = window.location.protocol + "//" + window.location.host + url;
+        }
 
         // Build a system
         var settings = {
