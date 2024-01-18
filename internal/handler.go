@@ -31,6 +31,7 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 	if h.InternalBasePath == "" {
 		h.InternalBasePath = h.BasePath
 	}
+
 	h.InternalBasePath = strings.TrimSuffix(h.InternalBasePath, "/") + "/"
 
 	j, err := json.Marshal(h.Config)
