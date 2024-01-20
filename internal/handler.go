@@ -28,6 +28,12 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 		Config: config,
 	}
 
+	if h.InternalBasePath == "" {
+		h.InternalBasePath = h.BasePath
+	}
+
+	h.InternalBasePath = strings.TrimSuffix(h.InternalBasePath, "/") + "/"
+
 	j, err := json.Marshal(h.Config)
 	if err != nil {
 		panic(err)
@@ -41,7 +47,7 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 	}
 
 	if staticServer != nil {
-		h.staticServer = http.StripPrefix(h.BasePath, staticServer)
+		h.staticServer = http.StripPrefix(h.InternalBasePath, staticServer)
 	}
 
 	return h
@@ -49,7 +55,7 @@ func NewHandlerWithConfig(config swgui.Config, assetsBase, faviconBase string, s
 
 // ServeHTTP implements http.Handler interface to handle swagger UI request.
 func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if strings.TrimSuffix(r.URL.Path, "/") != strings.TrimSuffix(h.BasePath, "/") && h.staticServer != nil {
+	if strings.TrimSuffix(r.URL.Path, "/") != strings.TrimSuffix(h.InternalBasePath, "/") && h.staticServer != nil {
 		h.staticServer.ServeHTTP(w, r)
 
 		return
