@@ -8,7 +8,7 @@ on:
       - created
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GO_VERSION: 1.20.x
+  GO_VERSION: 1.23.x
 jobs:
   build:
     name: Upload Release Assets
