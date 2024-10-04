@@ -8,10 +8,10 @@ just build and run.
 ### V5
 
 Static assets for `v5` are built from Swagger
-UI [v5.10.3](https://github.com/swagger-api/swagger-ui/releases/tag/v5.10.3).
+UI [v5.17.14](https://github.com/swagger-api/swagger-ui/releases/tag/v5.17.14).
 
 [CDN-based](https://cdnjs.com/libraries/swagger-ui) `v5cdn` uses Swagger
-UI [v5.10.3](https://github.com/swagger-api/swagger-ui/releases/tag/v5.10.3).
+UI [v5.17.14](https://github.com/swagger-api/swagger-ui/releases/tag/v5.17.14).
 
 ### V4
 
