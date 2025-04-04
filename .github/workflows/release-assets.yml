@@ -8,28 +8,18 @@ on:
       - created
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GO_VERSION: 1.23.x
+  GO_VERSION: stable
 jobs:
   build:
     name: Upload Release Assets
     runs-on: ubuntu-latest
     steps:
-      - name: Install Go stable
-        if: env.GO_VERSION != 'tip'
-        uses: actions/setup-go@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
-      - name: Install Go tip
-        if: env.GO_VERSION == 'tip'
-        run: |
-          curl -sL https://storage.googleapis.com/go-build-snap/go/linux-amd64/$(git ls-remote https://github.com/golang/go.git HEAD | awk '{print $1;}').tar.gz -o gotip.tar.gz
-          ls -lah gotip.tar.gz
-          mkdir -p ~/sdk/gotip
-          tar -C ~/sdk/gotip -xzf gotip.tar.gz
-          ~/sdk/gotip/bin/go version
-          echo "PATH=$HOME/go/bin:$HOME/sdk/gotip/bin/:$PATH" >> $GITHUB_ENV
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build artifacts
         run: |
           make release-assets
