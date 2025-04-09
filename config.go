@@ -1,5 +1,7 @@
 package swgui
 
+import "html/template"
+
 // Config is used for Swagger UI handler configuration.
 type Config struct {
 	Title       string `json:"title"`          // Title of index file.
@@ -19,4 +21,12 @@ type Config struct {
 	// Overrides default values.
 	// See https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/ for available options.
 	SettingsUI map[string]string `json:"-"`
+
+	// Proxy enables proxying requests through swgui handler.
+	// Can be useful if API is not directly available due to CORS policy.
+	Proxy bool `json:"-"`
+
+	AppendHead  template.HTML `json:"-"`
+	AppendHTML  template.HTML `json:"-"`
+	PrependHTML template.HTML `json:"-"`
 }
