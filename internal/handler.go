@@ -4,6 +4,7 @@ package internal
 import (
 	"encoding/json"
 	"html/template"
+	"io"
 	"net/http"
 	"strings"
 
@@ -61,9 +62,48 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if u := r.URL.Query().Get("proxy"); u != "" && h.Proxy {
+		h.proxyRequest(u, w, r)
+
+		return
+	}
+
 	w.Header().Set("Content-Type", "text/html")
 
 	if err := h.tpl.Execute(w, h); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func (h *Handler) proxyRequest(u string, w http.ResponseWriter, r *http.Request) {
+	b := r.Body
+	defer b.Close()
+
+	req, err := http.NewRequest(r.Method, u, b)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	req.Header = r.Header
+
+	resp, err := http.DefaultTransport.RoundTrip(req)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	hd := w.Header()
+	for k, vv := range resp.Header {
+		for _, v := range vv {
+			hd.Add(k, v)
+		}
+	}
+
+	w.WriteHeader(resp.StatusCode)
+	if _, err := io.Copy(w, resp.Body); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 }

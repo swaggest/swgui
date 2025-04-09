@@ -49,6 +49,10 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
 		settings[k] = v
 	}
 
+	if cfg.Proxy && settings["requestInterceptor"] == "" {
+		settings["requestInterceptor"] = `proxyRequest`
+	}
+
 	settingsStr := make([]string, 0, len(settings))
 	for k, v := range settings {
 		settingsStr = append(settingsStr, "\t\t\t"+k+": "+v)
@@ -83,9 +87,23 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
             background: #fafafa;
         }
     </style>
+
+	<script>
+	function proxyRequest(req) {
+		if (req.loadSpec) {
+			return req;
+		}
+		req.url = window.location.protocol+"//"+window.location.host + "/?proxy=" + encodeURIComponent(req.url);
+		return req
+	}
+	</script>
+
+{{ .AppendHead }}
 </head>
 
 <body>
+{{ .PrependHTML }}
+
 <div id="swagger-ui"></div>
 
 <script src="` + assetsBase + `swagger-ui-bundle.js"></script>
@@ -128,6 +146,9 @@ func IndexTpl(assetsBase, faviconBase string, cfg swgui.Config) string {
         window.ui = SwaggerUIBundle(settings);
     }
 </script>
+
+{{ .AppendHTML }}
+
 </body>
 </html>
 `

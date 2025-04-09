@@ -5,6 +5,8 @@ package v5emb
 
 import (
 	"net/http"
+
+	"github.com/swaggest/swgui/v5cdn"
 )
 
 var staticServer http.Handler
