@@ -42,7 +42,7 @@ export RELEASE_TARGETS="darwin/amd64 darwin/arm64 linux/amd64 linux/arm64 window
 
 SWAGGER_UI_VERSION_V3 := v3.52.5
 SWAGGER_UI_VERSION_V4 := v4.19.1
-SWAGGER_UI_VERSION_V5 := v5.20.5
+SWAGGER_UI_VERSION_V5 := v5.21.0
 
 ## Update assets for Swagger UI v3
 update-v3:
