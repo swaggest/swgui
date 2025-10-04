@@ -82,6 +82,7 @@ func (h *Handler) proxyRequest(u string, w http.ResponseWriter, r *http.Request)
 	req, err := http.NewRequest(r.Method, u, b)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+
 		return
 	}
 
@@ -90,11 +91,13 @@ func (h *Handler) proxyRequest(u string, w http.ResponseWriter, r *http.Request)
 	resp, err := http.DefaultTransport.RoundTrip(req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+
 		return
 	}
 	defer resp.Body.Close()
 
 	hd := w.Header()
+
 	for k, vv := range resp.Header {
 		for _, v := range vv {
 			hd.Add(k, v)
@@ -102,8 +105,10 @@ func (h *Handler) proxyRequest(u string, w http.ResponseWriter, r *http.Request)
 	}
 
 	w.WriteHeader(resp.StatusCode)
+
 	if _, err := io.Copy(w, resp.Body); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+
 		return
 	}
 }
