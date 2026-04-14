@@ -6,9 +6,14 @@ on:
   release:
     types:
       - created
+
+permissions:
+  contents: write # Required to upload assets
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GO_VERSION: stable
+  TAG_NAME: ${{ github.event.release.tag_name }}
 jobs:
   build:
     name: Upload Release Assets
@@ -23,60 +28,31 @@ jobs:
       - name: Build artifacts
         run: |
           make release-assets
+
       - name: Upload linux_amd64.tar.gz
         if: hashFiles('linux_amd64.tar.gz') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./linux_amd64.tar.gz
-          asset_name: linux_amd64.tar.gz
-          asset_content_type: application/tar+gzip
+        run: gh release upload "$TAG_NAME" linux_amd64.tar.gz --clobber
+
       - name: Upload linux_amd64_dbg.tar.gz
         if: hashFiles('linux_amd64_dbg.tar.gz') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./linux_amd64_dbg.tar.gz
-          asset_name: linux_amd64_dbg.tar.gz
-          asset_content_type: application/tar+gzip
+        run: gh release upload "$TAG_NAME" linux_amd64_dbg.tar.gz --clobber
+
       - name: Upload linux_arm64.tar.gz
         if: hashFiles('linux_arm64.tar.gz') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./linux_arm64.tar.gz
-          asset_name: linux_arm64.tar.gz
-          asset_content_type: application/tar+gzip
+        run: gh release upload "$TAG_NAME" linux_arm64.tar.gz --clobber
+
       - name: Upload linux_arm.tar.gz
         if: hashFiles('linux_arm.tar.gz') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./linux_arm.tar.gz
-          asset_name: linux_arm.tar.gz
-          asset_content_type: application/tar+gzip
+        run: gh release upload "$TAG_NAME" linux_arm.tar.gz --clobber
+
       - name: Upload darwin_amd64.tar.gz
         if: hashFiles('darwin_amd64.tar.gz') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./darwin_amd64.tar.gz
-          asset_name: darwin_amd64.tar.gz
-          asset_content_type: application/tar+gzip
+        run: gh release upload "$TAG_NAME" darwin_amd64.tar.gz --clobber
+
       - name: Upload darwin_arm64.tar.gz
         if: hashFiles('darwin_arm64.tar.gz') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./darwin_arm64.tar.gz
-          asset_name: darwin_arm64.tar.gz
-          asset_content_type: application/tar+gzip
+        run: gh release upload "$TAG_NAME" darwin_arm64.tar.gz --clobber
+
       - name: Upload windows_amd64.zip
         if: hashFiles('windows_amd64.zip') != ''
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./windows_amd64.zip
-          asset_name: windows_amd64.zip
-          asset_content_type: application/zip
-
+        run: gh release upload "$TAG_NAME" windows_amd64.zip --clobber

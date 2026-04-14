@@ -5,6 +5,8 @@ run:
 linters:
   default: all
   disable:
+    - modernize
+    - prealloc
     - errcheck
     - funlen
     - noctx

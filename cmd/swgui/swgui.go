@@ -17,7 +17,7 @@ import (
 
 	"github.com/bool64/dev/version"
 	"github.com/swaggest/swgui"
-	"github.com/swaggest/swgui/v5emb"
+	swgv5 "github.com/swaggest/swgui/v5emb"
 )
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 	flag.Parse()
 
 	if ver {
-		fmt.Printf("%s, Swagger UI %s\n", version.Info().Version, "v5.29.1")
+		fmt.Printf("%s, Swagger UI %s\n", version.Info().Version, "v5.32.3")
 
 		return
 	}
@@ -58,7 +58,7 @@ func main() {
 		Proxy:       proxy,
 	}
 
-	swh := v5emb.NewHandlerWithConfig(cfg)
+	swh := swgv5.NewHandlerWithConfig(cfg)
 	hh := http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == urlToSchema {
 			http.ServeFile(rw, r, filePathToSchema)

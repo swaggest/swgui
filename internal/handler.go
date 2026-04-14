@@ -79,7 +79,7 @@ func (h *Handler) proxyRequest(u string, w http.ResponseWriter, r *http.Request)
 	b := r.Body
 	defer b.Close()
 
-	req, err := http.NewRequest(r.Method, u, b)
+	req, err := http.NewRequest(r.Method, u, b) //nolint:gosec // URL is well formed.
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 
