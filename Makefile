@@ -42,7 +42,7 @@ export RELEASE_TARGETS="darwin/amd64 darwin/arm64 linux/amd64 linux/arm64 window
 
 SWAGGER_UI_VERSION_V3 := v3.52.5
 SWAGGER_UI_VERSION_V4 := v4.19.1
-SWAGGER_UI_VERSION_V5 := v5.29.1
+SWAGGER_UI_VERSION_V5 := v5.32.4
 
 ## Update assets for Swagger UI v3
 update-v3:
@@ -77,10 +77,13 @@ update-v4:
 ## Update assets for Swagger UI v5
 update-v5:
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui-bundle.js -o ./v5/static/swagger-ui-bundle.js
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui-es-bundle-core.js -o ./v5/static/swagger-ui-es-bundle-core.js
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui-es-bundle.js -o ./v5/static/swagger-ui-es-bundle.js
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui-standalone-preset.js -o ./v5/static/swagger-ui-standalone-preset.js
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui.js -o ./v5/static/swagger-ui.js
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/swagger-ui.css -o ./v5/static/swagger-ui.css
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/oauth2-redirect.html -o ./v5/static/oauth2-redirect.html
+	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/oauth2-redirect.js -o ./v5/static/oauth2-redirect.js
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/favicon-32x32.png -o ./v5/static/favicon-32x32.png
 	curl https://raw.githubusercontent.com/swagger-api/swagger-ui/$(SWAGGER_UI_VERSION_V5)/dist/favicon-16x16.png -o ./v5/static/favicon-16x16.png
 	rm -rf ./v5/static/*.gz
