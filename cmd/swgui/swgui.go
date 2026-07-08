@@ -36,7 +36,7 @@ func main() {
 	flag.Parse()
 
 	if ver {
-		fmt.Printf("%s, Swagger UI %s\n", version.Info().Version, "v5.32.6")
+		fmt.Printf("%s, Swagger UI %s\n", version.Info().Version, "v5.32.8")
 
 		return
 	}
